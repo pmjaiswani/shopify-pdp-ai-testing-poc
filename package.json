@@ -1,0 +1,25 @@
+{
+  "name": "shopify-pdp-testing-poc",
+  "version": "1.0.0",
+  "description": "POC for AI-driven Shopify PDP testing with Stagehand and Playwright",
+  "type": "module",
+  "scripts": {
+    "test": "tsx src/run-tests.ts",
+    "build": "tsc",
+    "validate": "tsc --noEmit"
+  },
+  "keywords": ["shopify", "testing", "stagehand", "playwright", "ai"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@browserbasehq/stagehand": "^2.0.0",
+    "@playwright/test": "^1.40.0",
+    "playwright-core": "^1.40.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  }
+}

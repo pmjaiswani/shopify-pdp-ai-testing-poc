@@ -1,0 +1,483 @@
+{
+    "version": "1.0.0",
+    "name": "Spectrum PDP Test Library",
+    "description": "Comprehensive test library for Shopify Product Detail Pages (PDP). Designed for AI-driven test execution via Stagehand or similar frameworks.",
+    "pageTypes": ["pdp"],
+    "templates": [
+      
+      {
+        "id": "pdp-title-visible",
+        "name": "Product Title Visible",
+        "description": "Verify the product title is visible and displays the correct product name",
+        "category": "core-product-info",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "any",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-description-visible",
+        "name": "Product Description Visible",
+        "description": "Verify the product description is visible and contains content",
+        "category": "core-product-info",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "any",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+  
+      {
+        "id": "pdp-price-visible",
+        "name": "Price Visible",
+        "description": "Verify the product price is visible and displays a valid price format",
+        "category": "pricing",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "any",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-compare-at-price-visible",
+        "name": "Sale Price and Compare-at Price Visible",
+        "description": "Verify both the sale price and original compare-at price are visible when product is on sale, with clear visual distinction between them",
+        "category": "pricing",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "on_sale",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-subscription-pricing-visible",
+        "name": "Subscription vs One-time Pricing Visible",
+        "description": "Verify both subscription price and one-time purchase price are visible when subscription option is available, showing the price difference clearly",
+        "category": "pricing",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "has_subscription",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-price-reflects-custom-options",
+        "name": "Price Updates When Custom Options Selected",
+        "description": "Verify the displayed price updates dynamically when price-affecting custom options (like engraving, gift wrap, etc.) are selected or deselected",
+        "category": "pricing",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "has_custom_options",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+  
+      {
+        "id": "pdp-main-image-visible",
+        "name": "Main Product Image Visible",
+        "description": "Verify the main product image is visible, fully loaded, and displays the product clearly",
+        "category": "product-media",
+        "priority": "P1",
+        "preconditions": {
+          "productState": "any",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-image-gallery-works",
+        "name": "Image Gallery Navigation Works",
+        "description": "Verify the image gallery or carousel can be navigated via thumbnails, arrows, dots, or swipe gestures to view all product images",
+        "category": "product-media",
+        "priority": "P1",
+        "preconditions": {
+          "productState": "multiple_images",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-variant-image-updates",
+        "name": "Image Updates on Variant Selection",
+        "description": "Verify the main product image updates to show the correct variant image when a different variant is selected",
+        "category": "product-media",
+        "priority": "P1",
+        "preconditions": {
+          "productState": ["has_variants", "has_variant_images"],
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+  
+      {
+        "id": "pdp-variant-selector-visible",
+        "name": "Variant Selector Visible with All Options",
+        "description": "Verify the variant selector is visible and displays all available variant options (e.g., all sizes, all colors) for selection",
+        "category": "variant-selection",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "has_variants",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-variant-selection-works",
+        "name": "Can Select Any Variant Type",
+        "description": "Verify user can select any variant option type (dropdowns, color swatches, size buttons, etc.) and the selection is visually confirmed",
+        "category": "variant-selection",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "has_variants",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-variant-updates-price",
+        "name": "Variant Selection Updates Price",
+        "description": "Verify the displayed price updates correctly when selecting a variant with a different price",
+        "category": "variant-selection",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "has_variants",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-variant-updates-availability",
+        "name": "Variant Selection Updates Stock Status",
+        "description": "Verify the stock status and availability messaging updates when selecting different variants, and unavailable variants are clearly indicated (disabled, crossed out, or labeled)",
+        "category": "variant-selection",
+        "priority": "P0",
+        "preconditions": {
+          "productState": ["has_variants", "mixed_availability"],
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-default-variant-selected",
+        "name": "Default Variant Pre-selected or Prompt to Select",
+        "description": "Verify that either a default variant is pre-selected on page load, or the user is clearly prompted to select variant options before adding to cart",
+        "category": "variant-selection",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "has_variants",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+  
+      {
+        "id": "pdp-quantity-selector-works",
+        "name": "Quantity Selector Works",
+        "description": "Verify the quantity selector allows changing quantity via increment/decrement buttons or manual entry, and the value updates correctly",
+        "category": "quantity-selection",
+        "priority": "P1",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-quantity-limits-enforced",
+        "name": "Min/Max Quantity Limits Enforced",
+        "description": "Verify minimum quantity cannot go below 1 (or configured minimum), and maximum quantity limits are enforced with appropriate feedback",
+        "category": "quantity-selection",
+        "priority": "P1",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+  
+      {
+        "id": "pdp-atc-button-visible-and-enabled",
+        "name": "Add to Cart Button Visible and Enabled",
+        "description": "Verify the Add to Cart button is visible, enabled, and appears interactive (not disabled, not hidden, not obscured)",
+        "category": "add-to-cart",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-atc-works",
+        "name": "Add to Cart Click Succeeds with Feedback",
+        "description": "Verify clicking Add to Cart successfully adds the product to cart and provides clear success feedback (button text change, animation, notification, or cart drawer)",
+        "category": "add-to-cart",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-atc-requires-variant-selection",
+        "name": "ATC Blocked Until Variant Selected",
+        "description": "Verify Add to Cart is disabled or shows an error when clicking without selecting required variant options, prompting user to make a selection",
+        "category": "add-to-cart",
+        "priority": "P0",
+        "preconditions": {
+          "productState": ["has_variants", "no_default_variant"],
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-atc-with-custom-options",
+        "name": "ATC Works with Custom Options",
+        "description": "Verify Add to Cart works correctly when custom options are selected, required custom options are enforced, and selected options are passed to cart",
+        "category": "add-to-cart",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "has_custom_options",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-atc-with-subscription",
+        "name": "ATC Works with Subscription Option",
+        "description": "Verify Add to Cart works when subscription purchase option is selected, including subscription frequency selection if applicable",
+        "category": "add-to-cart",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "has_subscription",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-preorder-works",
+        "name": "Pre-order Button Visible and Works",
+        "description": "Verify the Pre-order button is visible (instead of Add to Cart) for pre-order products, and clicking it successfully adds the item to cart",
+        "category": "add-to-cart",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "pre_order",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+  
+      {
+        "id": "pdp-buy-now-works",
+        "name": "Buy Now Button Visible and Initiates Checkout",
+        "description": "Verify the Buy Now button is visible and clicking it initiates the checkout process directly (redirects to checkout page)",
+        "category": "express-checkout",
+        "priority": "P1",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-dynamic-checkout-visible",
+        "name": "Dynamic Checkout Buttons Visible",
+        "description": "Verify dynamic checkout buttons (Shop Pay, Apple Pay, Google Pay, PayPal) are visible when enabled and the product is available for purchase",
+        "category": "express-checkout",
+        "priority": "P1",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+  
+      {
+        "id": "pdp-in-stock-display",
+        "name": "In Stock Status Indicated",
+        "description": "Verify in-stock products display a positive availability indicator (e.g., 'In Stock', 'Available', checkmark, or simply an enabled Add to Cart button)",
+        "category": "inventory-availability",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-out-of-stock-display",
+        "name": "Out of Stock Status and ATC Disabled",
+        "description": "Verify out-of-stock products clearly display 'Out of Stock' or 'Sold Out' messaging, and the Add to Cart button is disabled or hidden",
+        "category": "inventory-availability",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "out_of_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-notify-when-available",
+        "name": "Notify When Available Option Works",
+        "description": "Verify out-of-stock products display a 'Notify Me' or 'Back in Stock' option, and submitting an email address shows success confirmation",
+        "category": "inventory-availability",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "out_of_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-preorder-display",
+        "name": "Pre-order Status and Messaging Visible",
+        "description": "Verify pre-order products display clear pre-order messaging including expected ship date or timeframe when available",
+        "category": "inventory-availability",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "pre_order",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+  
+      {
+        "id": "pdp-cart-feedback-shown",
+        "name": "Cart Drawer Opens or Redirect After ATC",
+        "description": "Verify that after successfully adding to cart, either a cart drawer/modal opens showing the added item, or the user is redirected to the cart page",
+        "category": "cart-integration",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-cart-count-updates",
+        "name": "Cart Icon Count Updates After ATC",
+        "description": "Verify the cart icon badge or item count updates to reflect the newly added item(s) after a successful Add to Cart",
+        "category": "cart-integration",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-correct-item-in-cart",
+        "name": "Correct Product/Variant/Quantity/Options in Cart",
+        "description": "Verify the cart contains the correct product with the correct variant, quantity, and any selected custom options matching what was selected on the PDP",
+        "category": "cart-integration",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+      {
+        "id": "pdp-subscription-in-cart",
+        "name": "Subscription Details Reflected in Cart",
+        "description": "Verify subscription products in cart display subscription-specific details including frequency, subscription price, and any subscription badges or labels",
+        "category": "cart-integration",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "has_subscription",
+          "userState": "any",
+          "viewport": "any"
+        }
+      },
+  
+      {
+        "id": "pdp-sticky-atc-works",
+        "name": "Sticky Add to Cart Visible and Works",
+        "description": "Verify the sticky/fixed Add to Cart bar appears when scrolling past the main ATC button on mobile, and clicking it successfully adds the product to cart",
+        "category": "mobile-specific",
+        "priority": "P1",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "mobile"
+        }
+      },
+  
+      {
+        "id": "pdp-invalid-variant-handling",
+        "name": "Invalid Variant URL Handled Gracefully",
+        "description": "Verify that navigating to a PDP URL with an invalid or non-existent variant ID handles the error gracefully (shows default product, displays error message, or redirects appropriately)",
+        "category": "error-states",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "any",
+          "userState": "any",
+          "viewport": "any",
+          "urlState": "invalid_variant_id"
+        }
+      },
+      {
+        "id": "pdp-atc-error-handling",
+        "name": "ATC Error Displayed and Recoverable",
+        "description": "Verify that when Add to Cart fails (network error, inventory changed, etc.), an error message is displayed and the user can retry the action",
+        "category": "error-states",
+        "priority": "P0",
+        "preconditions": {
+          "productState": "in_stock",
+          "userState": "any",
+          "viewport": "any",
+          "simulatedState": "atc_failure"
+        }
+      }
+    ],
+  
+    "productStateDefinitions": {
+      "any": "No specific product state required",
+      "in_stock": "Product has available inventory",
+      "out_of_stock": "Product has zero inventory",
+      "pre_order": "Product is available for pre-order (not yet released)",
+      "on_sale": "Product has a compare-at price higher than current price",
+      "has_variants": "Product has multiple variants (size, color, etc.)",
+      "no_variants": "Product is a simple product with no variants",
+      "has_variant_images": "Product variants have different associated images",
+      "mixed_availability": "Product has some variants in stock and some out of stock",
+      "no_default_variant": "Product does not have a default variant pre-selected",
+      "has_subscription": "Product has subscription purchase option available",
+      "has_custom_options": "Product has custom options (engraving, monogram, gift wrap, etc.)",
+      "multiple_images": "Product has more than one product image"
+    },
+  
+    "userStateDefinitions": {
+      "any": "Test applies to both guest and logged-in users",
+      "guest": "User is not logged in",
+      "logged_in": "User is authenticated"
+    },
+  
+    "viewportDefinitions": {
+      "any": "Test applies to all viewports",
+      "desktop": "Desktop viewport (1024px+)",
+      "mobile": "Mobile viewport (<768px)"
+    },
+  
+    "categoryDefinitions": {
+      "core-product-info": "Basic product information display",
+      "pricing": "Price display and updates",
+      "product-media": "Images, gallery, and media",
+      "variant-selection": "Variant selector functionality",
+      "quantity-selection": "Quantity input functionality",
+      "add-to-cart": "Add to Cart button and related actions",
+      "express-checkout": "Buy Now and dynamic checkout buttons",
+      "inventory-availability": "Stock status and availability display",
+      "cart-integration": "Cart feedback and integration",
+      "mobile-specific": "Mobile-only functionality",
+      "error-states": "Error handling and edge cases"
+    }
+  }
