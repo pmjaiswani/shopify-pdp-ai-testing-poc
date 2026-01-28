@@ -63,7 +63,7 @@ function generateTestCase(result: TestResult, test: { id: string; name: string; 
       // AI found an element - convert to Playwright locator
       const playwrightSelector = convertSelector(step.selector);
       code += `    // Found via AI: ${step.instruction}\n`;
-      code += `    const element = page.locator('${playwrightSelector}');\n`;
+      code += `    const element = page.locator('${playwrightSelector}').first();\n`;
       code += `    await expect(element).toBeVisible();\n\n`;
     }
 
@@ -72,11 +72,11 @@ function generateTestCase(result: TestResult, test: { id: string; name: string; 
       if (step.instruction?.toLowerCase().includes('click')) {
         if (step.instruction.toLowerCase().includes('add to cart')) {
           code += `    // Click add to cart button\n`;
-          code += `    await page.getByRole('button', { name: /add to cart/i }).click();\n\n`;
+          code += `    await page.getByRole('button', { name: /add to cart/i }).first().click();\n\n`;
         } else if (step.selector) {
           const playwrightSelector = convertSelector(step.selector);
           code += `    // ${step.instruction}\n`;
-          code += `    await page.locator('${playwrightSelector}').click();\n\n`;
+          code += `    await page.locator('${playwrightSelector}').first().click();\n\n`;
         }
       }
     }
@@ -91,7 +91,7 @@ function generateTestCase(result: TestResult, test: { id: string; name: string; 
     else if (step.action === 'assert') {
       if (step.selector) {
         const playwrightSelector = convertSelector(step.selector);
-        code += `    await expect(page.locator('${playwrightSelector}')).toBeVisible();\n\n`;
+        code += `    await expect(page.locator('${playwrightSelector}').first()).toBeVisible();\n\n`;
       } else if (step.result !== undefined) {
         code += `    // Assertion passed: ${JSON.stringify(step.result)}\n\n`;
       }
